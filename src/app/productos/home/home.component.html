@@ -1,0 +1,17 @@
+<div class="contenedorEjemplo">
+    <h1>
+        HOME
+    </h1>
+
+    <div class="contenedorBotones">
+        <button id="btnComponente1" mat-raised-button (click)="componenteHijo1()" [appMouseOver]="color">
+      <i class="fa fa-cube" aria-hidden="true"></i>
+      <span>COMPONENTE HIJO 1</span>
+    </button>
+
+        <button mat-raised-button (click)="componenteHijo2()">
+      <i class="fa fa-cube" aria-hidden="true"></i>
+      <span>{{textoPipe | capitalize}}</span>
+    </button>
+    </div>
+</div>

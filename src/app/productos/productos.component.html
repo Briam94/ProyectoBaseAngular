@@ -1,0 +1,41 @@
+<mat-toolbar class="nav" color="primary">
+    <mat-toolbar-row>
+        <div class="itemMenu1">
+            <div id="nombreUsuario" class="animated fadeIn">
+                <span> EJEMPLO DE NAV </span>
+            </div>
+        </div>
+        <div class="itemMenu2">
+            <button mat-button class="itemMenu21" routerLinkActive="active" [routerLink]="'/productos'">
+                        <i id="home" class="fa fa-home" aria-hidden="true"></i>
+                        <span id="textProductos">HOME</span>
+                    </button>
+        </div>
+        <div class="itemMenu2">
+            <button mat-button class="itemMenu21" routerLinkActive="active" [routerLink]="['/productos', 'componenteHijo1']">
+                            <i id="home" class="fa fa-cube" aria-hidden="true"></i>
+                            <span id="textProductos">COMPONENTE 1</span>
+                        </button>
+        </div>
+        <div class="itemMenu2">
+            <button mat-button class="itemMenu21" routerLinkActive="active" [routerLink]="['/productos', 'componenteHijo2']">
+                                <i id="home" class="fa fa-cube" aria-hidden="true"></i>
+                                <span id="textProductos">COMPONENTE 2</span>
+                            </button>
+        </div>
+        <div class="itemMenu3">
+            <button mat-button class="itemMenu31" [routerLink]="'/'">
+                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                    <span id="textLogout">CERRAR SESIÓN</span>
+                </button>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+
+<!--
+    En este ROUTER-OUTLET se visualizarán todas las rutas hijas de PRODUCTOS.
+    La primera vista que se muestra en router-outlet es HOME 
+-->
+
+<router-outlet></router-outlet>

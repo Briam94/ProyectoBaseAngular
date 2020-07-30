@@ -1,1 +1,24 @@
-/* You can add global styles to this file, and also import other style files */
+/* En este archivo se incluiran todos los estilos que afecten al proyecto de manera global.
+En caso de existir un estilo que solo afecte un component lo mejor será incluirlo en el css del mismo. */
+
+
+/* el siguiente import es necesario para el uso de Angular Material, se ha modificado de tal manera que su color PRIMARY por defecto sea negro. */
+
+@import './estilos_pordefecto_material.css';
+
+/* Estilos que afectarán de manera global el proyecto */
+
+.contenedorEjemplo {
+    display: flex;
+    height: calc(100vh - 64px);
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.active {
+    font-weight: 900;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

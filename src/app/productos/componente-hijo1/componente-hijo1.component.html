@@ -1,0 +1,22 @@
+<div class="contenedorEjemplo">
+    <h1>
+        COMPONENTE HIJO 1
+    </h1>
+
+    <div class="contenedorBotones">
+        <button mat-raised-button [routerLink]="'/productos'">
+            <i class="fa fa-undo" aria-hidden="true"></i>
+            <span>IR ATRAS</span>
+          </button>
+
+        <button id="btnAtras" mat-raised-button [appMouseOver]="color" (click)="llamarServicio()">
+            <i class="fa fa-server" aria-hidden="true"></i>
+            <span>CONSULTA SERVICIO</span>
+    </button>
+    </div>
+
+    <p>
+        <strong>RESPUESTA SERVICIO:</strong>
+        <span>{{respuesta}}</span>
+    </p>
+</div>

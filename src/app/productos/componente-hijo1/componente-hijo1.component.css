@@ -1,0 +1,11 @@
+.contenedorBotones {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+button {
+    margin: 0 10px;
+}
