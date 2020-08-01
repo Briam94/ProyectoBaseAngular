@@ -22,3 +22,7 @@ En caso de existir un estilo que solo afecte un component lo mejor será incluir
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.margin-button{
+    margin: 1rem;
+}

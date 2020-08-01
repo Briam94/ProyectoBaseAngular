@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ROUTING } from './componente-hijo2.routing';
 import { ComponenteHijo2Component } from './componente-hijo2.component';
-import { MatButtonModule } from '@angular/material';
+import {MatButtonModule} from '@angular/material/button';
 
 
 @NgModule({

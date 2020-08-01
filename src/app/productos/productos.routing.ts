@@ -9,7 +9,7 @@ import { HomeComponent } from './home/home.component';
 
 export const PRODUCTOS_ROUTES: Routes = [
     { path: '', component: HomeComponent },
-    { path: 'componenteHijo1', loadChildren: 'app/productos/componente-hijo1/componente-hijo1.module#ComponenteHijo1Module' },
-    { path: 'componenteHijo2', loadChildren: 'app/productos/componente-hijo2/componente-hijo2.module#ComponenteHijo2Module' },
+    { path: 'componenteHijo1', loadChildren: () => import('./componente-hijo1/componente-hijo1.module').then(m => m.ComponenteHijo1Module) },
+    { path: 'componenteHijo2', loadChildren: () => import('./componente-hijo2/componente-hijo2.module').then(m => m.ComponenteHijo2Module) },
     { path: '**', pathMatch: 'full', redirectTo: '/productos' }
 ];

@@ -9,3 +9,11 @@
 button {
     margin: 0 10px;
 }
+
+.card{
+    text-align: -webkit-center;
+}
+
+.container{
+    padding: 1rem;
+}

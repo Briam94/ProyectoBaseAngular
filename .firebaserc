@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "fir-prueba-e8b95": {
+      "hosting": {
+        "prueba": [
+          "fir-prueba-e8b95"
+        ]
+      }
+    }
+  }
+}

@@ -8,6 +8,11 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { MouseOverModule } from '../core/layout/directives/mouse-over.module';
 import { CapitalizePipe } from '../core/layout/pipes/capitalizado.pipe';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from 'src/environments/environment';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
     imports: [
@@ -16,7 +21,12 @@ import { CapitalizePipe } from '../core/layout/pipes/capitalizado.pipe';
         LayoutModule,
         MatButtonModule,
         MatToolbarModule,
-        MouseOverModule
+        MouseOverModule,
+        AngularFireModule.initializeApp(environment.firebase),
+        AngularFireAnalyticsModule,
+        AngularFirestoreModule,
+        FormsModule,
+        ReactiveFormsModule
     ],
     exports: [
     ],

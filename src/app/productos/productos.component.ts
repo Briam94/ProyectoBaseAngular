@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { InicioService } from '../inicio/servicios/inicio.service';
 
 
 @Component({
@@ -8,10 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductosComponent implements OnInit {
 
+  user;
+
   datoService: any;
 
-  constructor() { }
+  constructor(private service: InicioService) {
+    //obtener el usuario logeado actualmente
+    this.user = JSON.parse(sessionStorage.getItem('user'));
+   }
 
   ngOnInit() {
   }
+
 }

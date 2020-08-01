@@ -1,22 +1,38 @@
-<div class="contenedorEjemplo">
-    <h1>
-        COMPONENTE HIJO 1
-    </h1>
-
-    <div class="contenedorBotones">
-        <button mat-raised-button [routerLink]="'/productos'">
-            <i class="fa fa-undo" aria-hidden="true"></i>
-            <span>IR ATRAS</span>
-          </button>
-
-        <button id="btnAtras" mat-raised-button [appMouseOver]="color" (click)="llamarServicio()">
-            <i class="fa fa-server" aria-hidden="true"></i>
-            <span>CONSULTA SERVICIO</span>
-    </button>
-    </div>
-
-    <p>
-        <strong>RESPUESTA SERVICIO:</strong>
-        <span>{{respuesta}}</span>
-    </p>
+<div class="container">
+    <div class="card card-perfil">
+        <div class="card-body" *ngIf="!letEdit">
+          <h5 class="card-title">Usuario: {{user.nombreUsuario}}</h5>
+          
+          <img class="imgVistaPrevia" [src]="imgUser" alt="vistaPrevia"
+          onload="this.style.background = 'none'">
+          <p class="card-text">Nombre: {{user.nombres}}</p>
+          <p class="card-text">Apellidos: {{user.apellidos}}</p>
+          <p class="card-text">Fecha nacimiento: {{user.fechaNacimiento}}</p>
+          <button type="button" class="btn btn-primary" (click)="letEdit = true" >Editar</button>
+        </div>
+        <div class="card-body" *ngIf="letEdit">
+          <form [formGroup]="userForm">
+            <div class="form-group">              
+              <input id="imgFile" class="imgFile" (change)="cargarImagen($event)"
+              accept=".png, .jpg, .jpeg" type="file" title="">
+              <img  *ngIf="imagen" class="imgVistaPrevia" [src]="imgUser" alt="vistaPrevia"
+                  onload="this.style.background = 'none'" onerror="this.src='/assets/img/icons/user.png';">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Nombre</label>
+              <input  formControlName="name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nombres">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Apellidos</label>
+              <input type="text" class="form-control" id="exampleInputPassword1" formControlName="lastName" placeholder="Aepllidos">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Fecha de nacimiento</label>
+              <input type="date" class="form-control" id="exampleInputPassword1" formControlName="date">
+            </div>
+            <button type="button" class="btn btn-primary margin-button" (click)="update()" >Actualizar</button>
+            <button type="button" class="btn btn-secondary">Cancelar</button>
+          </form>
+        </div>
+    </div>    
 </div>

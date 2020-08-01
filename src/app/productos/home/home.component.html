@@ -1,17 +1,116 @@
 <div class="contenedorEjemplo">
-    <h1>
-        HOME
-    </h1>
+  <div class="container">
+    <div class="card mb-3" *ngFor="let post of postLists; let i = index">
+      <div class="row no-gutters" *ngIf="user.nombreUsuario == post.user && post.private">
+          <div class="card-body">
+            <h5 class="card-title">
+              <img class="imgVistaPrevia" src="{{listImg[i]}}" alt="vistaPrevia"
+                  onload="this.style.background = 'none'">
+                  {{post.user}}</h5>
+            <p class="card-text">{{post.post}}</p>
+            
+            <div *ngIf="openEdit">
+              <form class="form-inline">
+                <div class="form-group lg-3 mb-2 comment-line">
+                  <input type="text" class="form-control" [(ngModel)]="postEdit" name="newNote" placeholder="Ingrese su comentario" style="width: 70%;">
+                  <button type="button" class="btn btn-primary mb-2" title="click para actualizar este post" (click)="updatePost()" >Actualizar</button>
+                </div>
+              </form>
+            </div>
 
-    <div class="contenedorBotones">
-        <button id="btnComponente1" mat-raised-button (click)="componenteHijo1()" [appMouseOver]="color">
-      <i class="fa fa-cube" aria-hidden="true"></i>
-      <span>COMPONENTE HIJO 1</span>
-    </button>
+            <p class="card-text"><small class="text-muted">
+              <span class="margin-button" title="Cantidad de likes"><i class="fas fa-thumbs-up icon-blue "></i>{{post.likes}}</span>
+              <span class="margin-button" title="Cantidad de comentarios"><i class="far fa-comment-alt icon-blue" ></i>{{post.comment}}</span></small>
+            </p>
+            <p class="card-text"><small class="text-muted" title="Fecha en de posteo">{{post.date}}</small></p>
+            <button type="button" class="btn btn-link" title="click para indicar que te gusta este post" (click)="like(post)" *ngIf="!post.likeme"><i class="far fa-thumbs-up"></i></button>
+            <button type="button" class="btn btn-link" title="click para indicar que te gusta este post" (click)="like(post)"  *ngIf="post.likeme"><i class="fas fa-thumbs-up blue" title="Te gusta este post" ></i></button>
+            
+            <button type="button" class="btn btn-link" title="click para dejar un comentario" (click)="openComment(i)"><i class="far fa-comment-alt"></i></button>
 
-        <button mat-raised-button (click)="componenteHijo2()">
-      <i class="fa fa-cube" aria-hidden="true"></i>
-      <span>{{textoPipe | capitalize}}</span>
-    </button>
+            <button *ngIf="user.nombreUsuario == post.user" type="button" class="btn btn-link" title="click para editar este post" (click)="editPost(i)" ><i class="far fa-edit"></i></button>
+            <button *ngIf="user.nombreUsuario == post.user" type="button" class="btn btn-link" title="click para eliminar este post" (click)="deletePost(i)" ><i class="fas fa-trash"></i></button>
+            <hr>
+            <div class="comments">
+              <div *ngIf="indexComment == i && openNewComment" class="card margin-button">
+                <div class="card-body">
+                  <form class="form-inline" [formGroup]="commentForm">
+                    <div class="form-group lg-3 mb-2 comment-line">
+                      <input type="text" class="form-control" id="consulta_enlace" formControlName="comment" placeholder="Commentar ..." style="width: 100%;">
+                    </div>
+                    <button type="button" class="btn btn-primary mb-2" [disabled]="!commentForm.controls.comment.value" title="Click para postear el comentario" (click)="setComment(i)">Comentar</button>
+                  </form>
+                </div>
+              </div>
+              <div *ngFor="let comment of post.comments" >
+                <div class="card margin-button">
+                  <div class="card-body">
+                    <span>{{comment.user}}</span>
+                    <p>
+                      {{comment.comment}}
+                    </p>
+                    <small>{{comment.date}}</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="row no-gutters" *ngIf="!post.private">
+        <div class="card-body">
+          <h5 class="card-title">
+            <img class="imgVistaPrevia" src="{{post.imagen}}" alt="vistaPrevia"
+                onload="this.style.background = 'none'">
+                {{post.user}}</h5>
+          <p class="card-text">{{post.post}}</p>
+          
+          <div *ngIf="openEdit">
+            <form class="form-inline">
+              <div class="form-group lg-3 mb-2 comment-line">
+                <input type="text" class="form-control" [(ngModel)]="postEdit" name="newNote" placeholder="Ingrese su comentario" style="width: 70%;">
+                <button type="button" class="btn btn-primary mb-2" title="click para actualizar este post" (click)="updatePost()" >Actualizar</button>
+              </div>
+            </form>
+          </div>
+
+          <p class="card-text"><small class="text-muted">
+            <span class="margin-button" title="Cantidad de likes"><i class="fas fa-thumbs-up icon-blue "></i>{{post.likes}}</span>
+            <span class="margin-button" title="Cantidad de comentarios"><i class="far fa-comment-alt icon-blue" ></i>{{post.comment}}</span></small>
+          </p>
+          <p class="card-text"><small class="text-muted" title="Fecha en de posteo">{{post.date}}</small></p>
+          <button type="button" class="btn btn-link" title="click para indicar que te gusta este post" (click)="like(post)" *ngIf="!post.likeme"><i class="far fa-thumbs-up"></i></button>
+          <button type="button" class="btn btn-link" title="click para indicar que te gusta este post" (click)="like(post)"  *ngIf="post.likeme"><i class="fas fa-thumbs-up blue" title="Te gusta este post" ></i></button>
+          
+          <button type="button" class="btn btn-link" title="click para dejar un comentario" (click)="openComment(i)"><i class="far fa-comment-alt"></i></button>
+
+          <button *ngIf="user.nombreUsuario == post.user" type="button" class="btn btn-link" title="click para editar este post" (click)="editPost(i)" ><i class="far fa-edit"></i></button>
+          <button *ngIf="user.nombreUsuario == post.user" type="button" class="btn btn-link" title="click para eliminar este post" (click)="deletePost(i)" ><i class="fas fa-trash"></i></button>
+          <hr>
+          <div class="comments">
+            <div *ngIf="indexComment == i && openNewComment" class="card margin-button">
+              <div class="card-body">
+                <form class="form-inline" [formGroup]="commentForm">
+                  <div class="form-group lg-3 mb-2 comment-line">
+                    <input type="text" class="form-control" id="consulta_enlace" formControlName="comment" placeholder="Commentar ..." style="width: 100%;">
+                  </div>
+                  <button type="button" class="btn btn-primary mb-2" [disabled]="!commentForm.controls.comment.value" title="Click para postear el comentario" (click)="setComment(i)">Comentar</button>
+                </form>
+              </div>
+            </div>
+            <div *ngFor="let comment of post.comments" >
+              <div class="card margin-button">
+                <div class="card-body">
+                  <span>{{comment.user}}</span>
+                  <p>
+                    {{comment.comment}}
+                  </p>
+                  <small>{{comment.date}}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
+    </div>
+  </div>
 </div>
